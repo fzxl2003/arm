@@ -1,0 +1,34 @@
+
+## 将汇编代码编译成o文件
+${CROSS_COMPILE}gcc -c sort.s -o sort.o
+## 将C代码编译成o文件
+${CROSS_COMPILE}gcc -c asm_program.c -o asm_program.o
+## 链接生成可执行文件
+${CROSS_COMPILE}gcc asm_program.o sort.o -o sort
+
+
+${CROSS_COMPILE}gcc -c thread_create_g.c -o thread_create_g.o
+${CROSS_COMPILE}gcc thread_create_g.o -o thread_create_g -lpthread
+
+${CROSS_COMPILE}gcc -c uart_test_g.c -o uart_test_g.o
+${CROSS_COMPILE}gcc uart_test_g.o -o uart_test_g
+
+${CROSS_COMPILE}gcc -c uart_thread.c -o uart_thread.o
+${CROSS_COMPILE}gcc uart_thread.o -o uart_thread -lpthread
+
+## 编译gpio_out_g.c 引用头文件GPIO_CTL.h
+${CROSS_COMPILE}gcc -c gpio_out_g.c -o gpio_out_g.o
+${CROSS_COMPILE}gcc gpio_out_g.o -o gpio_out_g
+
+## 编译gpio_out_g1.c 引用头文件GPIO_CTL.h
+${CROSS_COMPILE}gcc -c gpio_out_g1.c -o gpio_out_g1.o
+${CROSS_COMPILE}gcc gpio_out_g1.o -o gpio_out_g1
+
+## 编译gpio_in_g.c 引用头文件GPIO_CTL.h
+${CROSS_COMPILE}gcc -c gpio_in_g.c -o gpio_in_g.o
+${CROSS_COMPILE}gcc gpio_in_g.o -o gpio_in_g
+
+## 
+make
+装载内核模块（执行程序）；  insmod module_test.ko
+卸载内核模块（执行程序）；  rmmod module_test.ko
