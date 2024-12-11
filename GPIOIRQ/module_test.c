@@ -18,8 +18,8 @@
 #include <linux/sched.h>
 #include <linux/gpio/consumer.h>
 
-#define GPIO_lednum 37 //gpio_led 编号
-#define GPIO_keynum 36 //gpio_key 编号
+#define GPIO_lednum 30 //gpio_led 编号
+#define GPIO_keynum 175 //gpio_key 编号
 MODULE_AUTHOR("mq");
 MODULE_LICENSE("GPL");
 
@@ -33,7 +33,7 @@ static irqreturn_t irq_interrupt(int irq, void *dev_id)
 {
     irqreturn_t irqreturn = IRQ_HANDLED;    
     int ret;
-    int led_num = 37;
+    int led_num = 30;
     // 每执行一次中断，就对cout进行++，根据中断次数对gpio_led进行控制
     // 由于无法使用gpio_get_value来获取准备的值，根据触发中断的次数来对gpio_led进行控制
     // 每触发一次中断，对cout++，偶数次设置高电平，奇数次设置低电平

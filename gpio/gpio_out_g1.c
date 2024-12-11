@@ -14,7 +14,7 @@ int main()
     int fd;
 
     // 打开7个GPIO文件，设置为输出模式
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < 8; i++) {
         fd = gpio_open(leds[i], SYSFS_GPIO_RST_DIR_VAL_OUT); // 打开GPIO，设置为输出
         if (fd == -1) {
             printf("Failed to open GPIO %d\n", leds[i]);
@@ -23,7 +23,7 @@ int main()
     }
 
     // 每个LED交替闪烁两次
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < 8; i++) {
         for (j = 0; j < 2; j++) {
             // 点亮当前LED
             gpio_set_value(leds[i], SYSFS_GPIO_RST_VAL_H);  
@@ -36,7 +36,7 @@ int main()
     }
 
     // 关闭7个GPIO文件
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < 8; i++) {
         gpio_close(leds[i]);  // 关闭GPIO
     }
 

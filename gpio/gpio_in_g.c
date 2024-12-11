@@ -67,8 +67,8 @@ int main(int argc, char *argv[])
     int ret;
     fd_set fdset;
     int value;
-    int led_num = 24; /* gpio LED 的编号 */
-    int key_num = 36; /* gpio KEY 的编号 */
+    int led_num =26; /* gpio LED 的编号 */
+    int key_num = 170; /* gpio KEY 的编号 */
     int keyfd;
     int ledfd;
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     keyfd = gpio_open(key_num, SYSFS_GPIO_RST_DIR_VAL_IN);
     if(keyfd == -1)
     {
-        printf("OPEN GPIO ERROR.\n");
+        printf("OPEN GPIO ERROR1.\n");
     }
 
     FD_ZERO(&fdset);
@@ -101,11 +101,11 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    // gpio LED 初始化
-    if(gpio_init() != 0)
-    {
-        printf("init failed!\n");
-    }
+    // // gpio LED 初始化
+    // if(gpio_init() != 0)
+    // {
+    //     printf("init failed!\n");
+    // }
 
     int led_val;
 
@@ -128,12 +128,12 @@ int main(int argc, char *argv[])
                     if(led_val == 1)
                     {
                         // 如果LED亮，关闭LED
-                        gpio_set_value(led_num, 0); // 关闭LED
+                        gpio_set_value(led_num, SYSFS_GPIO_RST_VAL_L); // 关闭LED
                     }
                     else
                     {
                         // 如果LED灭，开启LED
-                        gpio_set_value(led_num, 1); // 打开LED
+                        gpio_set_value(led_num, SYSFS_GPIO_RST_VAL_H); // 打开LED
                     }
                 }
                 else

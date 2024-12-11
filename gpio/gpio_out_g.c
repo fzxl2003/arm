@@ -10,8 +10,8 @@ int main()
 {
     // int ledfd1 = 37;
     // int ledfd2 = 32;
-	int ledfd1=35;
-	int ledfd2=24;
+	int ledfd1=24;
+	int ledfd2=30;
     int sed = 0;
     int value1;
     int value2;

@@ -28,6 +28,9 @@ ${CROSS_COMPILE}gcc gpio_out_g1.o -o gpio_out_g1
 ${CROSS_COMPILE}gcc -c gpio_in_g.c -o gpio_in_g.o
 ${CROSS_COMPILE}gcc gpio_in_g.o -o gpio_in_g
 
+${CROSS_COMPILE}gcc -c gpio_in_g1.c -o gpio_in_g1.o
+${CROSS_COMPILE}gcc gpio_in_g1.o -o gpio_in_g1
+
 ## 
 make
 装载内核模块（执行程序）；  insmod module_test.ko

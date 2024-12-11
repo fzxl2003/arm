@@ -68,10 +68,10 @@ int main()
     int ret;
     fd_set fdset;
     int value1, value2;
-    int led1_num = 35;  /* KEY1 控制的 LED 编号 */
-    int led2_num = 24;  /* KEY2 控制的 LED 编号 */
-    int key1_num = 36;  /* KEY1 的编号 */
-    int key2_num = 38;  /* KEY2 的编号 */
+    int led1_num = 30;  /* KEY1 控制的 LED 编号 */
+    int led2_num = 26;  /* KEY2 控制的 LED 编号 */
+    int key1_num = 170;  /* KEY1 的编号 */
+    int key2_num = 175;  /* KEY2 的编号 */
     int key1fd, key2fd;
     int led1fd, led2fd;
 
@@ -153,11 +153,11 @@ int main()
                     led1_val = gpio_get_value(led1_num);
                     if(led1_val == 1)
                     {
-                        gpio_set_value(led1_num, 0);  // 关闭LED1
+                        gpio_set_value(led1_num, SYSFS_GPIO_RST_VAL_L);  // 关闭LED1
                     }
                     else
                     {
-                        gpio_set_value(led1_num, 1);  // 打开LED1
+                        gpio_set_value(led1_num, SYSFS_GPIO_RST_VAL_H);  // 打开LED1
                     }
                 }
             }
@@ -171,11 +171,11 @@ int main()
                     led2_val = gpio_get_value(led2_num);
                     if(led2_val == 1)
                     {
-                        gpio_set_value(led2_num, 0);  // 关闭LED2
+                        gpio_set_value(led2_num, SYSFS_GPIO_RST_VAL_L);  // 关闭LED2
                     }
                     else
                     {
-                        gpio_set_value(led2_num, 1);  // 打开LED2
+                        gpio_set_value(led2_num, SYSFS_GPIO_RST_VAL_H);  // 打开LED2
                     }
                 }
             }
