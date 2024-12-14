@@ -54,12 +54,12 @@ struct zlg7290
 struct zlg7290 *ptr_zlg7290;
 
 // 数码管位图，每一个bit代表一根灯管，置1:亮，置0:灭
-unsigned char bit_map[8] = {
+unsigned char bit_map[8] = {//////////////////////////////////////////////////////////////
     0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01
 };
 
 // 数码管显示0-F 16进制字符的位图数据
-unsigned char hex_map[40] = {
+unsigned char hex_map[40] = {//////////////////////////////////////////////////////////////
     0xfc, 0x60, 0xda, 0xf2, 0x66, 0xb6, 0xbe, 0xe0,
     0xfe, 0xf6, 0xee, 0x3e, 0x9c, 0x7a, 0x9e, 0x8e
 };
@@ -75,7 +75,7 @@ static int zlg7290_hw_write(struct zlg7290 *zlg7290, int len, size_t *retlen, ch
         { client->addr, 0, len, buf },//写入寄存器地址,0表示写,1表示读, len为写入的字节数, buf为写入的数据
     };
 
-    ret = i2c_transfer(client->adapter, msg, 1);
+    ret = i2c_transfer(client->adapter, msg, 1);/////////////////////////////////////////////////////
     if (ret < 0) 
     {
         dev_err(&client->dev, "i2c write error!\n");
@@ -88,7 +88,7 @@ static int zlg7290_hw_write(struct zlg7290 *zlg7290, int len, size_t *retlen, ch
 
 // 从i2c总线读数据
 static int zlg7290_hw_read(struct zlg7290 *zlg7290, int len, size_t *retlen, char *buf)
-{
+{//////////////////////////////////////////////////////////////////////////////////////////
     struct i2c_client *client = zlg7290->client;
     int ret;
 
@@ -308,7 +308,7 @@ static int __init zz_init(void)
 	// module_i2c_driver宏展开
 	i2c_register_driver(THIS_MODULE, &zlg7290_driver);
 	// 循环显示 bit_map 中的每个字符
-	for(i=0; i<8; i++){ // 外层循环：bit_map的长度
+	for(i=0; i<8; i++){ // 外层循环：bit_map的长度////////////////////////////////////////////////////////////////////////////////
 		for(j = 0; j < 4; j++){ // 内层循环：4个数码管寄存器
 			write_val[0] = REG_DP_RAM0 + j; // 写寄存器地址（REG_DP_RAM0到REG_DP_RAM3）
 			write_val[1] = bit_map[i];      // 写入bit_map中的每一位字符
