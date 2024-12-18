@@ -313,6 +313,7 @@ static int __init zz_init(void)
 			write_val[0] = REG_DP_RAM0 + j; // 写寄存器地址（REG_DP_RAM0到REG_DP_RAM3）
 			write_val[1] = bit_map[i];      // 写入bit_map中的每一位字符
 			zlg7290_hw_write(ptr_zlg7290, 2, &len, write_val); // 调用zlg7290_hw_write函数写入数据
+            printk("write value is %x\n", write_val[1]);
             
 			msleep(1); // 睡眠1毫秒
             //读取数码管的值
@@ -330,7 +331,8 @@ static int __init zz_init(void)
 			write_val[0] = REG_DP_RAM0 + j; // 写寄存器地址（REG_DP_RAM0到REG_DP_RAM3）
 			write_val[1] = hex_map[i];      // 写入hex_map中的每一位字符
 			zlg7290_hw_write(ptr_zlg7290, 2, &len, write_val); // 调用zlg7290_hw_write函数写入数据
-			msleep(1); // 睡眠1毫秒
+			printk("write value is %x\n", write_val[1]);
+            msleep(1); // 睡眠1毫秒
             //读取数码管的值
             zlg7290_hw_read(ptr_zlg7290, 1, &len, write_val);
             printk("read value is %x %c\n", write_val[0], find(write_val[0]));
