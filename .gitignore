@@ -5,3 +5,7 @@
 *.mod.c
 *.ko
 
+5/sqlite-autoconf-3470200
+5/sqlite-autoconf-3470200.tar.gz
+*.db
+

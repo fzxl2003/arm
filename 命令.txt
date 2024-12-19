@@ -35,3 +35,24 @@ ${CROSS_COMPILE}gcc gpio_in_g1.o -o gpio_in_g1
 make
 装载内核模块（执行程序）；  insmod module_test.ko
 卸载内核模块（执行程序）；  rmmod module_test.ko
+
+
+
+## 编译sqlite
+
+./configure CC=/home/fzxl2003/my-imx6/03_tools/gcc-linaro-5.4.1-2017.05-i686_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc --host=arm-linux --prefix=/usr/tmp/
+sudo make && make install
+
+## 迁移
+ cp -af /usr/tmp/lib/libsqlite3.so ./libsqlite3.so
+ cp -af /usr/tmp/lib/libsqlite3.so.0 ./libsqlite3.so.0
+ cp -af /usr/tmp/lib/libsqlite3.so.0.8.6 ./libsqlite3.so.0.8.6
+ cp -af /usr/tmp/include/sqlite3.h ./sqlite3.h
+ cp -af /usr/tmp/bin/sqlite3 ./sqlite3
+
+ ## 编译sql_operater_g.c
+ ${CROSS_COMPILE}gcc sql_operater_g.c  -o sql_operater_g -lsqlite3 -L ~/sql/lib
+ ${CROSS_COMPILE}gcc sql_student_g.c  -o sql_student_g -lsqlite3 -L ~/sql/lib
+
+ gcc sql_operater_g.c  -o sql_operater_g_86 -lsqlite3
+    gcc sql_student_g.c  -o sql_student_g_86 -lsqlite3
